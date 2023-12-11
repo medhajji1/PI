@@ -1,0 +1,25 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}Reponse{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+        <h1>Response Reclamation pour {{ reclamation.email }}</h1>
+            <div class="col-md-6 offset-md-3">
+                {{ form_start(form, { 'attr': {'class': 'form'} }) }}
+                    <div class="form-group">
+                       Envoyer {{ form_label(form.message, 'Message') }}
+                        {{ form_widget(form.message, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+
+                    {{ form_row(form._token) }}
+
+                    <button type="submit" class="btn btn-success">Envoyer Response</button>
+                {{ form_end(form) }}
+
+                <a href="{{ path('app_dashboard_reclamation') }}" class="btn btn-secondary mt-3">Retour Reclamations</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

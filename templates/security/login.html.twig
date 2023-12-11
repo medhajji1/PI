@@ -1,0 +1,63 @@
+{% extends 'logbase.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<div class="main">
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="{{ asset('login/images/signin-image.jpg') }}" alt="sing up image"></figure>
+                <a href="{{path('add_utilisateur')}}" class="signup-image-link">Create an account</a>
+            </div>
+
+            <form method="post" action="{{ path('app_login')}}">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+    <div class="form-group">
+        <label for="email"><i class="zmdi zmdi-email"></i></label>
+        <input type="email" value="{{ last_username }}" name="email" id="email" placeholder="Your Email"/>
+    </div>
+
+    <div class="form-group">
+        <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+        <input type="password" name="password" id="pass" placeholder="Password"/>
+    </div>
+
+
+
+
+    <div class="form-group">
+        <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+        <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+    </div>
+
+                <div class="form-group form-button">
+                    <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                </div>
+            <div class="form-group" >
+              <a class="forget" style="font-size:10px;color:black;" href="{{path('verifCodeEmail')}}"><h1>mot de passe oublié ?</h1></a>            
+            </div>
+</form>
+
+
+
+        </div>
+    </div>
+</section>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_dashboard_reclamation_edit:
+    path: /dashboard/reclamation/{id}/edit
+    controller: App\Controller\DashboardReclamationController::edit
+
+app_reservation_create:
+    path: /new
+    controller: App\Controller\ReservationController::create
+    methods: [GET, POST]
+
+app_contrat_new:
+    path: /newcontrat
+    controller: App\Controller\ContratController::create
+    methods: [GET, POST]

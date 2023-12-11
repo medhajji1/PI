@@ -1,0 +1,74 @@
+{% extends 'logbase.html.twig' %}
+
+{% block title %}Verifier mot de passe{% endblock %}
+
+
+
+{% block body %}
+
+<div class="main">
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="{{ asset('login/images/signin-image.jpg') }}" alt="sing up image"></figure>
+            </div>
+
+
+    <h1 class="h5 mb-5 font-weight-normal">Verifier votre mail</h1>
+                                    {% for message in app.flashes('error') %}
+
+              <div class="alert alert-error">
+                <div class="icon__wrapper">
+                  <span class="mdi mdi-alert-outline"><i class="fa-solid fa-circle-exclamation"></i></span>
+                </div>
+                  &nbsp;&nbsp;&nbsp;{{ message }}
+                <span class="mdi mdi-open-in-new open"></span>
+                <span class="mdi mdi-close close" onclick="closeAlert()"><i class="fa-solid fa-xmark"></i></span>
+              </div>
+            {% endfor %}
+              {{ form_start(form2) }}
+              {{ form_errors(form2) }}
+                            <br><br><br><br><br><br>
+
+    <div class="form-group" style="right:80%; width:150%">
+                    {{ form_label(form2.email, 'Votre email') }}<br><br>
+                   {{ form_widget(form2.email) }}
+                    {{ form_errors(form2.email) }} 
+    </div>
+
+                <div class="form-group form-button" style="right:80%; width:150%">
+                    <input type="submit" name="signin" id="signin" class="form-submit" value="Vérifier"/>
+                </div>
+            {{ form_end(form2) }}
+
+        </div>
+    </div>
+</section>
+</div>
+
+
+
+
+
+    <script>
+  function returnToLogin() {
+    // Generate the URL for the product page with the specified ID
+    const url = "{{ path('app_login') }}";
+    
+    // Redirect the user to the product page
+    window.location.href = url;
+  }
+ 
+  function closeAlert(){
+      const alert = document.querySelector(".alert");
+      alert.style.display = "none";
+  }
+
+  </script>  
+  {% endblock %}
+
+
+
+
+

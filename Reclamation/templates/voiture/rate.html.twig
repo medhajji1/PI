@@ -1,0 +1,170 @@
+{% extends 'base.voiture.html.twig' %}
+
+{% block title %}
+  Voiture
+{% endblock %}
+
+{% block stylesheets %}
+  <style>
+    input:invalid {
+      border: 2px solid red;
+    }
+    
+    .profile-card-4 {
+      overflow: hidden;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+      position: relative;
+      margin: 10px auto;
+      cursor: pointer;
+    }
+    
+    .profile-card-4 img {
+      max-width: 300px;
+      height: 150px;
+      object-fit: cover;
+      transition: all 0.25s linear;
+    }
+    
+    .profile-card-4 .profile-content {
+      position: relative;
+      padding: 15px;
+      background-color: #fff;
+    }
+    
+    .profile-card-4 .profile-name {
+      font-weight: bold;
+      font-size: 17px;
+    }
+    
+    .profile-card-4 .profile-name p {
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+    }
+    
+    .profile-card-4 .profile-description {
+      color: #777;
+      font-size: 12px;
+      padding: 10px;
+    }
+    
+    .profile-card-4 .profile-overview {
+      padding: 15px 0px;
+    }
+    
+    .profile-card-4 .profile-overview p {
+      font-size: 10px;
+      font-weight: 600;
+      color: #777 !important;
+    }
+    
+    .profile-card-4 .profile-overview h4 {
+      color: #273751;
+      font-weight: bold;
+    }
+    
+    .profile-card-4 .profile-content::before {
+      content: '';
+      position: absolute;
+      height: 20px;
+      top: -10px;
+      left: 0px;
+      right: 0px;
+      background-color: #fff;
+      z-index: 0;
+      transform: skewY(3deg);
+    }
+    
+    .profile-card-4:hover img {
+      transform: rotate(5deg) scale(1.1, 1.1);
+      filter: brightness(110%);
+    }
+    
+    .profile-card-4 a,
+    btn {
+      color: white;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div class="hero-wrap">
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    <div class="container py-5">
+      <div class="row justify-content-center" style="color: white;">
+        <div class="container">
+          <div class="row">
+            {% if voiture %}
+              <div class="col-md-4">
+                <div class="profile-card-4 text-center">
+                  <img src="{{ voiture.image }}" class="img img-responsive" alt="{{ voiture.immatriculation }}" />
+                  <div class="profile-content">
+                    <div class="profile-description">
+                      <div class="profile-name">
+                        {{ voiture.categorie }}<p>{{ voiture.immatriculation }}</p>
+                      </div>
+                      <b>Kilometrage:</b> {{ voiture.kilometrage }} <br />
+                      <b>Couleur:</b> {{ voiture.couleur }} <br />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+               <div class="col-md-8">
+
+          {{ form_start(form, {'attr': {'class': 'contact-form'}}) }}
+            <div class="row">
+              <div class="col-md-6">
+                {{ form_row(form.rating, {'attr': {'class': 'form-control', 'placeholder': 'Rating', 'min': 0, 'max': 5}}) }}
+              </div>
+              <div class="col-md-6">
+                {{ form_row(form.note, {'attr': {'class': 'form-control', 'placeholder': 'Note'}}) }}
+              </div>
+
+              <div class="col-md-12 text-center">
+                <div class="form-group" style="margin-top: 17px;display: inline-block;">
+                {{ form_row(form.submit, { 'label': 'Submit', 'attr': { 'class': 'btn btn-primary py-3 px-5' } }) }}
+                </div>
+              </div>
+            </div>
+          {{ form_end(form) }}
+        </div>
+
+
+            {% else %}
+              no records found
+            {% endif %}
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# <ul class="nav flex-column" style="flex-direction: row !important">
+    <li class="nav-item">
+      <a class="nav-link click-scroll" href="{{ path('app_voiture_index') }}">Voiture Home</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link click-scroll" href="{{ path('app_category_index') }}">Categories</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link click-scroll" href="{{ path('app_voiture_create') }}">Create Voiture</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link click-scroll" href="{{ path('app_reservation_index') }}">Reservations</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link click-scroll" href="{{ path('app_reservation_create') }}">Create Reservation</a>
+    </li>
+  </ul> #}
+{% endblock %}

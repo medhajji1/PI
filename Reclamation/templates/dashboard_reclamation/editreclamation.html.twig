@@ -1,0 +1,100 @@
+{% extends 'basedashboard.html.twig' %}
+
+{% block title %}Modifier Réclamation{% endblock %}
+
+{% block body %}  
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Modifier Réclamation</h3>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center" style="color: white;">
+        <div class="col-md-8">
+       
+          {{ form_start(form, {'attr': {'class': 'contact-form'}}) }}
+            <div class="row">
+              <div class="col-md-6">
+                {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+              </div>
+              <div class="col-md-6">
+                {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Adresse e-mail'}}) }}
+              </div>
+              <div class="col-md-6">
+                {{ form_row(form.category, {'attr': {'class': 'form-control', 'placeholder': 'Choisir une Categorie'}}) }}
+              </div>
+              <div class="col-md-12">
+                {{ form_row(form.sujet, {'attr': {'class': 'form-control', 'placeholder': 'Sujet'}}) }}
+              </div>
+              <div class="col-md-12">
+                {{ form_row(form.message, {'attr': {'class': 'form-control', 'rows': 7, 'placeholder': 'Message'}}) }}
+              </div>
+              <div class="col-md-12">
+                {{ form_row(form.numtel, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}}) }}
+              </div>
+              <div class="col-md-12 text-center">
+                <div class="form-group" style="margin-top: 17px;display: inline-block;">
+                  {{ form_widget(form.Ajouter, {'attr': {'class': 'btn btn-primary py-3 px-5'}}) }}
+                </div>
+              </div>
+            </div>
+          {{ form_end(form) }}
+        </div>
+      </div>
+        </div>
+    </div>
+   <script>
+  // get all the form fields
+  const nomField = document.getElementById('reclamation_nom');
+  const emailField = document.getElementById('reclamation_email');
+  const sujetField = document.getElementById('reclamation_sujet');
+  const messageField = document.getElementById('reclamation_message');
+  const numtelField = document.getElementById('reclamation_numtel');
+
+  // define regular expressions for each field
+  const nomRegex = /^[a-zA-Z]+(\s[a-zA-Z]+)*$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const sujetRegex = /^.+$/;
+  const numtelRegex = /^(2|5|7|9)\d{7}$/;
+
+  // add event listeners to each field
+  nomField.addEventListener('input', function() {
+    if (!nomRegex.test(nomField.value)) {
+      nomField.classList.add('is-invalid');
+    } else {
+      nomField.classList.remove('is-invalid');
+    }
+  });
+
+  emailField.addEventListener('input', function() {
+    if (!emailRegex.test(emailField.value)) {
+      emailField.classList.add('is-invalid');
+    } else {
+      emailField.classList.remove('is-invalid');
+    }
+  });
+
+  sujetField.addEventListener('input', function() {
+    if (!sujetRegex.test(sujetField.value)) {
+      sujetField.classList.add('is-invalid');
+    } else {
+      sujetField.classList.remove('is-invalid');
+    }
+  });
+
+  messageField.addEventListener('input', function() {
+    if (!sujetRegex.test(messageField.value)) {
+      messageField.classList.add('is-invalid');
+    } else {
+      messageField.classList.remove('is-invalid');
+    }
+  });
+
+  numtelField.addEventListener('input', function() {
+    if (!numtelRegex.test(numtelField.value)) {
+      numtelField.classList.add('is-invalid');
+    } else {
+      numtelField.classList.remove('is-invalid');
+    }
+  });
+</script> 
+{% endblock %}

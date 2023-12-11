@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Are you sure you want to delete this reclamation?</h1>
+
+    <p>{{ reclamation.email }}</p>
+
+    <form method="post" action="{{ path('app_reclamation_delete', {'id': reclamation.id}) }}">
+        {{ form_widget(form) }}
+
+        <a href="{{ path('app_reclamation_delete', {'id': reclamation.getId()}) }}">
+        <button type="submit" class="btn btn-danger">Yes, delete it</button>
+        </a>
+        <a href="{{ path('app_reclamation_list', {'id': reclamation.getId()}) }}" class="btn btn-primary">Cancel</a>
+    </form>
+{% endblock %} 
